@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — RizzoDev</title>
+  <meta name="description" content="Start a project with RizzoDev. Send a message or book a free intro call. Replies usually within one business day." />
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <span class="brand__prompt">~/</span>rizzodev<span class="brand__caret" aria-hidden="true"></span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">_</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">home</a></li>
+        <li><a href="services.html">services</a></li>
+        <li><a href="work.html">work</a></li>
+        <li><a href="about.html">about</a></li>
+        <li><a href="contact.html" class="btn btn-lime nav-cta">contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section section--tight">
+      <div class="container">
+        <p class="eyebrow">contact</p>
+        <h1>Let's talk about your project.</h1>
+        <p class="hero__lead">
+          Tell me what's slowing your business down — in plain words is perfect. I read every
+          message myself and usually reply within one business day.
+        </p>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section class="section">
+      <div class="container grid grid-2" style="align-items:start;">
+        <!-- ============ FORM ============
+             SETUP: replace YOUR_FORM_ID below with your Formspree form ID.
+             1. Create a free form at https://formspree.io
+             2. Paste the endpoint into the form's `action` attribute.
+             Until then, the form shows a friendly "not connected yet" message.
+        -->
+        <div class="reveal">
+          <form
+            class="form"
+            data-contact-form
+            action="https://formspree.io/f/YOUR_FORM_ID"
+            method="POST"
+          >
+            <div class="field">
+              <label for="name">Name <span class="req">*</span></label>
+              <input id="name" name="name" type="text" autocomplete="name" placeholder="Your name" required />
+            </div>
+
+            <div class="field">
+              <label for="email">Email <span class="req">*</span></label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="you@business.com" required />
+            </div>
+
+            <div class="field">
+              <label for="company">Business <span class="text-dim">(optional)</span></label>
+              <input id="company" name="company" type="text" autocomplete="organization" placeholder="Your business name" />
+            </div>
+
+            <div class="field">
+              <label for="message">What do you need? <span class="req">*</span></label>
+              <textarea id="message" name="message" placeholder="Describe the problem or project. No jargon required." required></textarea>
+            </div>
+
+            <!-- Honeypot: hidden field to deter spam bots -->
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true" />
+
+            <button type="submit" class="btn btn-primary btn-block">Send message →</button>
+            <p class="form__status" role="status" aria-live="polite"></p>
+            <p class="form__note">No spam, ever. Your details are only used to reply to you.</p>
+          </form>
+        </div>
+
+        <!-- ============ DIRECT METHODS + BOOKING ============ -->
+        <div class="reveal">
+          <h3 class="mb-0">Prefer to book a call?</h3>
+          <p class="text-dim mt-4">
+            Grab a free 20-minute intro call — we'll talk through your problem and whether I'm
+            the right fit. No pressure, no obligation.
+          </p>
+
+          <!-- SETUP: replace the href with your Calendly link, e.g.
+               https://calendly.com/your-handle/intro-call
+               (You can also embed Calendly inline later — see README.) -->
+          <p class="mt-4">
+            <a
+              href="https://calendly.com/YOUR_CALENDLY/intro-call"
+              target="_blank"
+              rel="noopener"
+              class="btn btn-lime btn-block"
+            >Book a free intro call →</a>
+          </p>
+
+          <h3 class="mt-6 mb-0">Other ways to reach me</h3>
+          <div class="contact-methods mt-4">
+            <a class="contact-method" href="mailto:rbrizzo99.career@gmail.com">
+              <span class="contact-method__icon" aria-hidden="true">@</span>
+              <span class="contact-method__body">
+                <span class="contact-method__label">email</span>
+                <span class="contact-method__value">rbrizzo99.career@gmail.com</span>
+              </span>
+            </a>
+            <a class="contact-method" href="https://github.com/RyanRizzoGithub" target="_blank" rel="noopener">
+              <span class="contact-method__icon" aria-hidden="true">&gt;_</span>
+              <span class="contact-method__body">
+                <span class="contact-method__label">github</span>
+                <span class="contact-method__value">github.com/RyanRizzoGithub</span>
+              </span>
+            </a>
+            <a class="contact-method" href="https://www.linkedin.com/in/ryan-rizzo-/" target="_blank" rel="noopener">
+              <span class="contact-method__icon" aria-hidden="true">in</span>
+              <span class="contact-method__body">
+                <span class="contact-method__label">linkedin</span>
+                <span class="contact-method__value">linkedin.com/in/ryan-rizzo-</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="index.html"><span class="brand__prompt">~/</span>rizzodev</a>
+          <p class="footer__copy"><span class="prompt">$</span> built &amp; maintained by Ryan Rizzo — &copy; <span data-year>2026</span></p>
+        </div>
+        <ul class="footer-links">
+          <li><a href="services.html">services</a></li>
+          <li><a href="work.html">work</a></li>
+          <li><a href="about.html">about</a></li>
+          <li><a href="contact.html">contact</a></li>
+          <li><a href="https://github.com/RyanRizzoGithub" target="_blank" rel="noopener">github</a></li>
+          <li><a href="https://www.linkedin.com/in/ryan-rizzo-/" target="_blank" rel="noopener">linkedin</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
