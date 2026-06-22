@@ -263,6 +263,13 @@ code, .mono { font-family: var(--font-mono); }
   box-shadow: var(--glow);
 }
 
+/* CTA buttons inside the nav keep their own readable text color,
+   not the dim nav-link color (which would otherwise win on specificity). */
+.nav-links a.btn,
+.nav-links a.btn:hover { color: var(--black); }
+.nav-links a.btn-primary,
+.nav-links a.btn-primary:hover { color: #1a1200; }
+
 .nav-toggle {
   display: none;
   background: transparent;
