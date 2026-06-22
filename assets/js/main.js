@@ -1,5 +1,5 @@
 /* ============================================================
-   RizzoDev — main.js
+   RizzoDev main.js
    Vanilla JS, no dependencies. Loaded with `defer`.
    ============================================================ */
 (function () {
@@ -148,7 +148,7 @@
   }
 
   /* ----------------------------------------------------------
-     6. Contact form — progressive enhancement (Formspree)
+     6. Contact form: progressive enhancement (Formspree)
         Falls back to a normal POST if JS/fetch unavailable.
      ---------------------------------------------------------- */
   function initContactForm() {
@@ -165,7 +165,7 @@
       if (unconfigured) {
         e.preventDefault();
         setStatus(
-          "Form not connected yet — add your Formspree endpoint in contact.html. " +
+          "Form not connected yet. Add your Formspree endpoint in contact.html. " +
           "Meanwhile, email rbrizzo99.career@gmail.com.",
           "is-error"
         );
@@ -188,7 +188,7 @@
         .then(function (res) {
           if (res.ok) {
             form.reset();
-            setStatus("Message sent. I'll get back to you within one business day.", "is-ok");
+            setStatus("Message sent. I'll get back to you within two business days.", "is-ok");
           } else {
             return res.json().then(function (data) {
               var msg =
