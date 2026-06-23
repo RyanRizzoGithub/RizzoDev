@@ -55,7 +55,7 @@ rare enough that it always means *the* next action. Don't use it for decoration.
 
 ## 2. Typography
 
-- **One typeface: `JetBrains Mono`** (loaded from Google Fonts), with a system-monospace
+- **One typeface: `JetBrains Mono`** (self-hosted woff2 in `assets/fonts/`, declared with `@font-face`; no Google Fonts request), with a system-monospace
   fallback stack. Everything is mono — it carries the terminal identity. Clean and modern,
   not pixelated/retro (that would read as "cheap").
 - Headings: weight 700, tight letter-spacing (`-0.01em`).

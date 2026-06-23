@@ -1,8 +1,40 @@
 /* ============================================================
-   RizzoDev — Global Stylesheet
+   RizzoDev Global Stylesheet
    Aesthetic: inside of an 80s computer / command line / dark mode
    See DESIGN_CONVENTIONS.md for the full system.
    ============================================================ */
+
+/* ----------------------------------------------------------------
+   0. Self hosted font (JetBrains Mono, latin). No third party requests.
+   ---------------------------------------------------------------- */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/jetbrains-mono-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/jetbrains-mono-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/jetbrains-mono-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/jetbrains-mono-700.woff2') format('woff2');
+}
 
 /* ----------------------------------------------------------------
    1. Design tokens
@@ -23,9 +55,9 @@
   /* Text */
   --text:      #CDEBD3;    /* primary body (soft green-white, readable) */
   --text-dim:  #6E8A73;    /* secondary / captions / muted */
-  --heading:   #F2FFF4;    /* brightest — large headings */
+  --heading:   #F2FFF4;    /* brightest, large headings */
 
-  /* Accent — classic amber CRT, used sparingly for primary CTAs */
+  /* Accent: classic amber CRT, used sparingly for primary CTAs */
   --amber:        #FFB000;
   --amber-bright: #FFC740;
 
@@ -148,7 +180,7 @@ code, .mono { font-family: var(--font-mono); }
 .text-lime { color: var(--lime); }
 .text-amber { color: var(--amber); }
 
-/* Eyebrow — prompt-style section label */
+/* Eyebrow: prompt-style section label */
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -564,13 +596,15 @@ code, .mono { font-family: var(--font-mono); }
   padding: var(--s-7) var(--s-6);
   position: relative;
 }
-.testimonial__quote {
+.testimonial__quote { margin: 0; }
+.testimonial__quote p {
   font-size: clamp(1.15rem, 2.4vw, 1.5rem);
   color: var(--heading);
   line-height: 1.5;
 }
-.testimonial__quote::before { content: "\201C"; color: var(--lime); }
-.testimonial__quote::after  { content: "\201D"; color: var(--lime); }
+.testimonial__quote p + p { margin-top: var(--s-5); }
+.testimonial__quote p:first-of-type::before { content: "\201C"; color: var(--lime); }
+.testimonial__quote p:last-of-type::after  { content: "\201D"; color: var(--lime); }
 .testimonial__by {
   margin-top: var(--s-5);
   color: var(--text-dim);
@@ -743,50 +777,45 @@ code, .mono { font-family: var(--font-mono); }
 .work-card__more a { font-size: 0.85rem; }
 
 /* ----------------------------------------------------------------
-   22. Tools marquee (the toolkit)
+   22. Toolkit (categorized tool list with icons)
    ---------------------------------------------------------------- */
-.marquee {
-  overflow: hidden;
-  position: relative;
-  padding-block: var(--s-2);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
-          mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+.toolkit {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s-6) var(--s-7);
 }
-.marquee + .marquee { margin-top: var(--s-4); }
-.marquee__track {
+@media (max-width: 760px) { .toolkit { grid-template-columns: 1fr; } }
+
+.toolkit__cat-title {
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: var(--s-4);
   display: flex;
   align-items: center;
-  gap: var(--s-6);
-  width: max-content;
-  animation: marquee 52s linear infinite;
+  gap: var(--s-2);
 }
-.marquee--reverse .marquee__track { animation-direction: reverse; }
-.marquee:hover .marquee__track { animation-play-state: paused; }
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+.toolkit__cat-title::before { content: "\203A"; color: var(--lime-dim); }
+
+.toolkit__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-3);
 }
 .tool {
   display: inline-flex;
   align-items: center;
   gap: var(--s-2);
-  white-space: nowrap;
-  opacity: 0.82;
-  transition: opacity 0.15s ease;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  transition: border-color 0.15s ease, transform 0.12s ease;
 }
-.tool:hover { opacity: 1; }
-.tool__icon { width: 24px; height: 24px; display: block; flex: none; }
-.tool__label { color: var(--text-dim); font-size: 0.82rem; letter-spacing: 0.02em; }
-
-@media (prefers-reduced-motion: reduce) {
-  .marquee { -webkit-mask-image: none; mask-image: none; }
-  .marquee__track {
-    animation: none;
-    transform: none;
-    flex-wrap: wrap;
-    width: auto;
-    justify-content: center;
-    gap: var(--s-4) var(--s-5);
-  }
-  .marquee__track .is-clone { display: none; }
-}
+.tool:hover { border-color: rgba(31, 199, 66, 0.4); transform: translateY(-1px); }
+.tool__icon { width: 20px; height: 20px; display: block; flex: none; color: var(--lime); }
+.tool__label { color: var(--text); font-size: 0.82rem; letter-spacing: 0.01em; }

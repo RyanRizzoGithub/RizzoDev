@@ -215,62 +215,97 @@
   }
 
   /* ----------------------------------------------------------
-     7. Tools marquee
-        Builds a scrolling row of tool icons (Simple Icons CDN,
-        tinted brand green) from a [label, slug] list. Missing
-        icons fall back to a text label. The set is duplicated
-        once (clones marked .is-clone) so the loop is seamless.
+     7. Toolkit (categorized tool list)
+        Builds category blocks of tool chips. Brand icons are
+        local green SVGs in assets/icons/ (no third party calls).
+        Tools without a brand icon fall back to an inline generic:
+        a database glyph (SQL/NoSQL) or a letter monogram.
      ---------------------------------------------------------- */
   function initTools() {
-    var mounts = document.querySelectorAll("[data-tools]");
-    if (!mounts.length) return;
+    var mount = document.querySelector("[data-toolkit]");
+    if (!mount) return;
 
-    var GREEN = "1FC742";
-    var rows = {
-      a: [
-        ["HTML", "html5"], ["React", "react"], ["Python", "python"], ["Shopify", "shopify"],
-        ["C++", "cplusplus"], ["Calendly", "calendly"], ["SQL", null], ["WordPress", "wordpress"],
-        ["TypeScript", "typescript"], ["Supabase", "supabase"], ["Make", "make"], ["Wix", "wix"],
-        ["Java", null], ["Squarespace", "squarespace"]
-      ],
-      b: [
-        ["JavaScript", "javascript"], ["Vercel", "vercel"], ["PHP", "php"], ["Monday", "mondaydotcom"],
-        ["CSS", "css3"], ["GitHub", "github"], ["R", "r"], ["Typeform", "typeform"],
-        ["NoSQL", null], ["Canva", "canva"], ["C", "c"], ["Square", "square"],
-        ["Kajabi", "kajabi"], ["Tally", "tally"]
-      ]
-    };
-
-    function buildSet(items, isClone) {
-      var frag = document.createDocumentFragment();
-      items.forEach(function (it) {
-        var el = document.createElement("span");
-        el.className = "tool" + (isClone ? " is-clone" : "");
-        if (isClone) el.setAttribute("aria-hidden", "true");
-        if (it[1]) {
-          var img = document.createElement("img");
-          img.className = "tool__icon";
-          img.src = "https://cdn.simpleicons.org/" + it[1] + "/" + GREEN;
-          img.alt = it[0];
-          img.loading = "lazy";
-          img.width = 24;
-          img.height = 24;
-          img.onerror = function () { this.remove(); };
-          el.appendChild(img);
-        }
-        var label = document.createElement("span");
-        label.className = "tool__label";
-        label.textContent = it[0];
-        el.appendChild(label);
-        frag.appendChild(el);
-      });
-      return frag;
+    function generic(type, label) {
+      var svg, box = document.createElement("div");
+      if (type === "mono") {
+        var letter = (String(label).replace(/[^A-Za-z0-9]/g, "").charAt(0) || "?").toUpperCase();
+        svg =
+          '<svg class="tool__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
+          '<rect x="2.5" y="2.5" width="19" height="19" rx="5" stroke="currentColor" stroke-width="2"/>' +
+          '<text x="12" y="16.5" text-anchor="middle" font-size="12" font-weight="700" ' +
+          'font-family="JetBrains Mono, monospace" fill="currentColor">' + letter + "</text></svg>";
+      } else {
+        var inner = type === "db"
+          ? '<ellipse cx="12" cy="5" rx="9" ry="3"/>' +
+            '<path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>' +
+            '<path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/>'
+          : '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>';
+        svg =
+          '<svg class="tool__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+          'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+          inner + "</svg>";
+      }
+      box.innerHTML = svg;
+      return box.firstChild;
     }
 
-    mounts.forEach(function (mount) {
-      var items = rows[mount.getAttribute("data-tools")] || rows.a;
-      mount.appendChild(buildSet(items, false));
-      mount.appendChild(buildSet(items, true));
+    function makeIcon(label, slug, generictype) {
+      if (!slug) return generic(generictype, label);
+      var img = document.createElement("img");
+      img.className = "tool__icon";
+      img.src = "assets/icons/" + slug + ".svg";
+      img.alt = "";
+      img.loading = "lazy";
+      img.width = 20;
+      img.height = 20;
+      img.onerror = function () {
+        if (this.parentNode) this.parentNode.replaceChild(generic("mono", label), this);
+      };
+      return img;
+    }
+
+    var cats = [
+      { title: "Languages & data", tools: [
+        ["HTML", "html5"], ["CSS", "css"], ["JavaScript", "javascript"], ["TypeScript", "typescript"],
+        ["Python", "python"], ["Java", "openjdk"], ["C", "c"], ["C++", "cplusplus"], ["PHP", "php"],
+        ["R", "r"], ["SQL", null, "db"], ["NoSQL", null, "db"]
+      ] },
+      { title: "Frameworks & infrastructure", tools: [
+        ["React", "react"], ["GitHub", "github"], ["Vercel", "vercel"], ["Supabase", "supabase"]
+      ] },
+      { title: "Websites & platforms", tools: [
+        ["WordPress", "wordpress"], ["Squarespace", "squarespace"], ["Wix", "wix"], ["Kajabi", null, "mono"],
+        ["Shopify", "shopify"], ["Canva", null, "mono"]
+      ] },
+      { title: "Tools & integrations", tools: [
+        ["Calendly", "calendly"], ["Square", "square"], ["Monday", null, "mono"], ["Make", "make"],
+        ["Tally", null, "mono"], ["Typeform", "typeform"]
+      ] }
+    ];
+
+    cats.forEach(function (cat) {
+      var block = document.createElement("div");
+      block.className = "toolkit__cat";
+
+      var h = document.createElement("h3");
+      h.className = "toolkit__cat-title";
+      h.textContent = cat.title;
+      block.appendChild(h);
+
+      var ul = document.createElement("ul");
+      ul.className = "toolkit__list";
+      cat.tools.forEach(function (t) {
+        var li = document.createElement("li");
+        li.className = "tool";
+        li.appendChild(makeIcon(t[0], t[1], t[2]));
+        var label = document.createElement("span");
+        label.className = "tool__label";
+        label.textContent = t[0];
+        li.appendChild(label);
+        ul.appendChild(li);
+      });
+      block.appendChild(ul);
+      mount.appendChild(block);
     });
   }
 

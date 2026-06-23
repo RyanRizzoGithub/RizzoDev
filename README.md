@@ -20,13 +20,19 @@ RizzoDev/
 ├── 404.html            # Custom not-found page
 ├── assets/
 │   ├── css/style.css   # All styles (design tokens in :root)
-│   ├── js/main.js      # Nav, hero typing, scroll reveals, form
+│   ├── js/main.js      # Nav, hero typing, scroll reveals, form, toolkit
+│   ├── fonts/          # Self-hosted JetBrains Mono (woff2, weights 400-700)
+│   ├── icons/          # Local toolkit icons (green SVGs)
 │   └── favicon.svg
 ├── DESIGN_CONVENTIONS.md
 └── README.md
 ```
 
-There's no framework and nothing to compile — open any `.html` file in a browser to view it.
+There's no framework and nothing to compile, so open any `.html` file in a browser to view it.
+
+The site makes **zero third-party requests on load**: the font and all toolkit icons are
+served from this repo. The only outbound calls are user-initiated (clicking the GitHub /
+LinkedIn / Calendly links, or submitting the contact form).
 
 ---
 
@@ -93,6 +99,11 @@ Add a file named `CNAME` at the repo root containing just your domain (e.g.
 ---
 
 ## Notes
-- Fonts load from Google Fonts (JetBrains Mono). Everything else is local — no other
-  third-party dependencies, no tracking.
+- **JetBrains Mono** is self-hosted from `assets/fonts/` (OFL licensed), declared with
+  `@font-face` in `style.css`. No Google Fonts request.
+- **Toolkit icons** are local green SVGs in `assets/icons/` (sourced from Simple Icons, CC0).
+  Tools without a brand icon (Monday, Canva, Tally, Kajabi) render an inline letter monogram;
+  SQL and NoSQL use an inline database glyph. To add a brand icon, drop `<slug>.svg` into
+  `assets/icons/` and reference the slug in `initTools()` in `main.js`.
+- No tracking, no analytics, no third-party dependencies.
 - All motion respects `prefers-reduced-motion`.
