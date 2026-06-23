@@ -215,6 +215,66 @@
   }
 
   /* ----------------------------------------------------------
+     7. Tools marquee
+        Builds a scrolling row of tool icons (Simple Icons CDN,
+        tinted brand green) from a [label, slug] list. Missing
+        icons fall back to a text label. The set is duplicated
+        once (clones marked .is-clone) so the loop is seamless.
+     ---------------------------------------------------------- */
+  function initTools() {
+    var mounts = document.querySelectorAll("[data-tools]");
+    if (!mounts.length) return;
+
+    var GREEN = "1FC742";
+    var rows = {
+      a: [
+        ["HTML", "html5"], ["React", "react"], ["Python", "python"], ["Shopify", "shopify"],
+        ["C++", "cplusplus"], ["Calendly", "calendly"], ["SQL", null], ["WordPress", "wordpress"],
+        ["TypeScript", "typescript"], ["Supabase", "supabase"], ["Make", "make"], ["Wix", "wix"],
+        ["Java", null], ["Squarespace", "squarespace"]
+      ],
+      b: [
+        ["JavaScript", "javascript"], ["Vercel", "vercel"], ["PHP", "php"], ["Monday", "mondaydotcom"],
+        ["CSS", "css3"], ["GitHub", "github"], ["R", "r"], ["Typeform", "typeform"],
+        ["NoSQL", null], ["Canva", "canva"], ["C", "c"], ["Square", "square"],
+        ["Kajabi", "kajabi"], ["Tally", "tally"]
+      ]
+    };
+
+    function buildSet(items, isClone) {
+      var frag = document.createDocumentFragment();
+      items.forEach(function (it) {
+        var el = document.createElement("span");
+        el.className = "tool" + (isClone ? " is-clone" : "");
+        if (isClone) el.setAttribute("aria-hidden", "true");
+        if (it[1]) {
+          var img = document.createElement("img");
+          img.className = "tool__icon";
+          img.src = "https://cdn.simpleicons.org/" + it[1] + "/" + GREEN;
+          img.alt = it[0];
+          img.loading = "lazy";
+          img.width = 24;
+          img.height = 24;
+          img.onerror = function () { this.remove(); };
+          el.appendChild(img);
+        }
+        var label = document.createElement("span");
+        label.className = "tool__label";
+        label.textContent = it[0];
+        el.appendChild(label);
+        frag.appendChild(el);
+      });
+      return frag;
+    }
+
+    mounts.forEach(function (mount) {
+      var items = rows[mount.getAttribute("data-tools")] || rows.a;
+      mount.appendChild(buildSet(items, false));
+      mount.appendChild(buildSet(items, true));
+    });
+  }
+
+  /* ----------------------------------------------------------
      Init
      ---------------------------------------------------------- */
   document.addEventListener("DOMContentLoaded", function () {
@@ -224,5 +284,6 @@
     initTyping();
     initReveal();
     initContactForm();
+    initTools();
   });
 })();
