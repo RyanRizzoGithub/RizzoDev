@@ -265,11 +265,6 @@
     }
 
     var cats = [
-      { title: "Languages & data", tools: [
-        ["HTML", "html5"], ["CSS", "css"], ["JavaScript", "javascript"], ["TypeScript", "typescript"],
-        ["Python", "python"], ["Java", "openjdk"], ["C", "c"], ["C++", "cplusplus"], ["PHP", "php"],
-        ["SQL", null, "db"], ["NoSQL", null, "db"]
-      ] },
       { title: "Frameworks & infrastructure", tools: [
         ["React", "react"], ["GitHub", "github"], ["Vercel", "vercel"], ["Supabase", "supabase"]
       ] },
@@ -280,6 +275,11 @@
       { title: "Tools & integrations", tools: [
         ["Calendly", "calendly"], ["Square", "square"], ["Monday", null, "mono"], ["Make", "make"],
         ["Tally", null, "mono"], ["Typeform", "typeform"]
+      ] },
+      { title: "Languages & data", tools: [
+        ["HTML", "html5"], ["CSS", "css"], ["JavaScript", "javascript"], ["TypeScript", "typescript"],
+        ["Python", "python"], ["Java", "openjdk"], ["C", "c"], ["C++", "cplusplus"], ["PHP", "php"],
+        ["SQL", null, "db"]
       ] }
     ];
 

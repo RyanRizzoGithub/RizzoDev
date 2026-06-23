@@ -55,6 +55,7 @@
   /* Text */
   --text:      #CDEBD3;    /* primary body (soft green-white, readable) */
   --text-dim:  #6E8A73;    /* secondary / captions / muted */
+  --icon-grey: #A0A8A3;    /* toolkit icons, neutral grey */
   --heading:   #F2FFF4;    /* brightest, large headings */
 
   /* Accent: classic amber CRT, used sparingly for primary CTAs */
@@ -817,5 +818,5 @@ code, .mono { font-family: var(--font-mono); }
   transition: border-color 0.15s ease, transform 0.12s ease;
 }
 .tool:hover { border-color: rgba(31, 199, 66, 0.4); transform: translateY(-1px); }
-.tool__icon { width: 20px; height: 20px; display: block; flex: none; color: var(--lime-bright); }
+.tool__icon { width: 20px; height: 20px; display: block; flex: none; color: var(--icon-grey); }
 .tool__label { color: var(--text); font-size: 0.82rem; letter-spacing: 0.01em; }
