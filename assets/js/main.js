@@ -268,7 +268,7 @@
       { title: "Languages & data", tools: [
         ["HTML", "html5"], ["CSS", "css"], ["JavaScript", "javascript"], ["TypeScript", "typescript"],
         ["Python", "python"], ["Java", "openjdk"], ["C", "c"], ["C++", "cplusplus"], ["PHP", "php"],
-        ["R", "r"], ["SQL", null, "db"], ["NoSQL", null, "db"]
+        ["SQL", null, "db"], ["NoSQL", null, "db"]
       ] },
       { title: "Frameworks & infrastructure", tools: [
         ["React", "react"], ["GitHub", "github"], ["Vercel", "vercel"], ["Supabase", "supabase"]

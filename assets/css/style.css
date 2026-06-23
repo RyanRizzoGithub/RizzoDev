@@ -817,5 +817,5 @@ code, .mono { font-family: var(--font-mono); }
   transition: border-color 0.15s ease, transform 0.12s ease;
 }
 .tool:hover { border-color: rgba(31, 199, 66, 0.4); transform: translateY(-1px); }
-.tool__icon { width: 20px; height: 20px; display: block; flex: none; color: var(--lime); }
+.tool__icon { width: 20px; height: 20px; display: block; flex: none; color: var(--lime-bright); }
 .tool__label { color: var(--text); font-size: 0.82rem; letter-spacing: 0.01em; }
