@@ -333,6 +333,9 @@ code, .mono { font-family: var(--font-mono); }
   }
   .nav-links.is-open { opacity: 1; transform: none; pointer-events: auto; }
   .nav-links a { padding-block: var(--s-3); border-bottom: 1px solid var(--line); }
+  /* In the stacked mobile menu, drop the active underline (it overlapped the link
+     below it); the active link is already shown in lime via .is-active. */
+  .nav-links a.is-active::after { display: none; }
   .nav-links li:last-child a { border-bottom: 0; }
   .nav-links .nav-cta { margin-top: var(--s-3); }
 }
@@ -704,7 +707,7 @@ code, .mono { font-family: var(--font-mono); }
   gap: var(--s-5);
   align-items: center;
 }
-.footer-links { display: flex; gap: var(--s-5); list-style: none; padding: 0; }
+.footer-links { display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5); list-style: none; padding: 0; }
 .footer-links a { color: var(--text-dim); font-size: 0.88rem; }
 .footer-links a:hover { color: var(--lime); }
 .footer__copy { color: var(--text-dim); font-size: 0.82rem; }

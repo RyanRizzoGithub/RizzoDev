@@ -266,15 +266,16 @@
 
     var cats = [
       { title: "Frameworks & infrastructure", tools: [
-        ["React", "react"], ["GitHub", "github"], ["Vercel", "vercel"], ["Supabase", "supabase"]
+        ["React", "react"], ["Next.js", "nextdotjs"], ["GitHub", "github"], ["Vercel", "vercel"], ["Supabase", "supabase"]
       ] },
       { title: "Websites & platforms", tools: [
         ["WordPress", "wordpress"], ["Squarespace", "squarespace"], ["Wix", "wix"], ["Kajabi", null, "mono"],
         ["Shopify", "shopify"], ["Canva", null, "mono"]
       ] },
       { title: "Tools & integrations", tools: [
-        ["Calendly", "calendly"], ["Square", "square"], ["Monday", null, "mono"], ["Make", "make"],
-        ["Tally", null, "mono"], ["Typeform", "typeform"]
+        ["Stripe", "stripe"], ["Square", "square"], ["Zapier", "zapier"], ["Make", "make"],
+        ["Calendly", "calendly"], ["Mailchimp", "mailchimp"], ["Monday", null, "mono"], ["Tally", null, "mono"],
+        ["Typeform", "typeform"]
       ] },
       { title: "Languages & data", tools: [
         ["HTML", "html5"], ["CSS", "css"], ["JavaScript", "javascript"], ["TypeScript", "typescript"],

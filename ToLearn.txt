@@ -1,0 +1,40 @@
+RizzoDev :: tools to learn, then add to the toolkit
+====================================================
+
+Rule of thumb: only add a tool to the site once you can genuinely
+deliver with it. A portfolio that overpromises works against the
+"precise, never sloppy" brand.
+
+( * = clients recognize and ask for these by name. Highest value. )
+
+
+[ tools & integrations ]
+  * QuickBooks      small business accounting; pairs great with automation
+  * Airtable        the "database for normal people"; clients love it
+    HubSpot         CRM plus marketing
+    Google Analytics / Google Workspace
+    Slack           team comms and a common integration target
+
+
+[ websites & platforms ]
+  * Webflow         designers and clients know it; huge in this space
+  * WooCommerce     WordPress ecommerce
+    Framer          design to live site
+    Notion          simple sites, docs, wikis
+
+
+[ frameworks & infrastructure ]
+    Tailwind CSS    fast, consistent styling
+    Node.js         backend and APIs (pairs with React + Next.js)
+    Firebase        auth, database, hosting (clients know "Google Firebase")
+    Docker          packaging and deployment
+
+
+[ languages & data ]
+    PostgreSQL      what Supabase runs on
+    Go              fast backend services
+    Swift / Kotlin  only if you offer mobile apps as a service
+
+
+----------------------------------------------------------------
+already added (you have these now): Zapier, Mailchimp, Stripe, Next.js
