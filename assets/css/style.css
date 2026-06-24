@@ -295,6 +295,9 @@ code, .mono { font-family: var(--font-mono); }
   background: var(--lime);
   box-shadow: var(--glow);
 }
+/* The contact CTA is a filled button; don't add the active underline to it
+   (it sat right on the button's bottom edge and looked off). */
+.nav-links a.btn.is-active::after { display: none; }
 
 /* CTA buttons inside the nav keep their own readable text color,
    not the dim nav-link color (which would otherwise win on specificity). */
@@ -317,6 +320,9 @@ code, .mono { font-family: var(--font-mono); }
 
 @media (max-width: 760px) {
   .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
+  /* Drop the header hairline on mobile; under the sparse hamburger bar it read
+     as a stray green line. The translucent blurred header still separates content. */
+  .site-header { border-bottom-color: transparent; }
   .nav-links {
     position: absolute;
     top: 64px; left: 0; right: 0;
@@ -346,10 +352,12 @@ code, .mono { font-family: var(--font-mono); }
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: var(--s-2);
   font-family: var(--font-mono);
   font-size: 0.92rem;
   font-weight: 600;
+  line-height: 1;
   letter-spacing: 0.02em;
   padding: 0.7rem 1.25rem;
   border-radius: var(--radius);
@@ -605,6 +613,7 @@ code, .mono { font-family: var(--font-mono); }
   font-size: clamp(1.15rem, 2.4vw, 1.5rem);
   color: var(--heading);
   line-height: 1.5;
+  font-style: italic;
 }
 .testimonial__quote p + p { margin-top: var(--s-5); }
 .testimonial__quote p:first-of-type::before { content: "\201C"; color: var(--lime); }
