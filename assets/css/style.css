@@ -284,7 +284,6 @@ code, .mono { font-family: var(--font-mono); }
   position: relative;
   padding-block: 0.25rem;
 }
-.nav-links a::before { content: ""; }
 .nav-links a:hover { color: var(--text); }
 .nav-links a.is-active { color: var(--lime); }
 .nav-links a.is-active::after {
@@ -329,8 +328,8 @@ code, .mono { font-family: var(--font-mono); }
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    background: var(--black);
-    border-bottom: 1px solid var(--line);
+    background: var(--panel);
+    box-shadow: var(--shadow);
     padding: var(--s-2) var(--s-5) var(--s-5);
     transform: translateY(-8px);
     opacity: 0;
@@ -338,11 +337,9 @@ code, .mono { font-family: var(--font-mono); }
     transition: opacity 0.18s ease, transform 0.18s ease;
   }
   .nav-links.is-open { opacity: 1; transform: none; pointer-events: auto; }
-  .nav-links a { padding-block: var(--s-3); border-bottom: 1px solid var(--line); }
-  /* In the stacked mobile menu, drop the active underline (it overlapped the link
-     below it); the active link is already shown in lime via .is-active. */
+  /* No divider lines between items in the mobile menu; spacing separates them. */
+  .nav-links a { padding-block: var(--s-3); }
   .nav-links a.is-active::after { display: none; }
-  .nav-links li:last-child a { border-bottom: 0; }
   .nav-links .nav-cta { margin-top: var(--s-3); }
 }
 
@@ -610,7 +607,7 @@ code, .mono { font-family: var(--font-mono); }
 }
 .testimonial__quote { margin: 0; }
 .testimonial__quote p {
-  font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
   color: var(--heading);
   line-height: 1.5;
   font-style: italic;
@@ -788,6 +785,36 @@ code, .mono { font-family: var(--font-mono); }
    ---------------------------------------------------------------- */
 .work-card__more { margin-top: var(--s-4); }
 .work-card__more a { font-size: 0.85rem; }
+
+/* "Coming soon" placeholder work card: faint diagonal hatch + a muted label */
+.work-card--soon {
+  background:
+    repeating-linear-gradient(45deg, transparent 0, transparent 9px,
+      rgba(31, 199, 66, 0.06) 9px, rgba(31, 199, 66, 0.06) 11px),
+    var(--panel);
+}
+.work-card--soon:hover {
+  transform: none;
+  border-color: var(--line);
+  box-shadow: none;
+}
+.work-card__soon {
+  margin-top: var(--s-4);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.work-card__soon::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--lime-dim);
+}
 
 /* ----------------------------------------------------------------
    22. Toolkit (categorized tool list with icons)
